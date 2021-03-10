@@ -3,7 +3,7 @@ export const logout = async (req, res) => {
     return res
       .status(200)
       .cookie("auth-token", "logout", {
-        sameSite: "strict",
+        sameSite: "None",
         path: "/",
         httpOnly: true,
         secure: true,
