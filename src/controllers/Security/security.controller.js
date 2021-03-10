@@ -42,7 +42,7 @@ export const login = async (req, res) => {
         sameSite: "None",
         path: "/",
         httpOnly: true,
-        secure: false,
+        secure: true,
       })
       .json({ message: "Logged in!" });
   }
