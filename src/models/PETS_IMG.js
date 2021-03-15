@@ -1,32 +1,39 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  return USER_PETS.init(sequelize, DataTypes);
+  return PETS_IMG.init(sequelize, DataTypes);
 }
 
-class USER_PETS extends Sequelize.Model {
+class PETS_IMG extends Sequelize.Model {
   static init(sequelize, DataTypes) {
   super.init({
+    uuid: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      primaryKey: true
+    },
+    pet_uuid: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      references: {
+        model: 'PETS',
+        key: 'uuid'
+      }
+    },
     user_uuid: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'USERS',
         key: 'uuid'
       }
     },
-    pet_uuid: {
+    path: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-      primaryKey: true,
-      references: {
-        model: 'PETS',
-        key: 'uuid'
-      }
+      allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'USER_PETS',
+    tableName: 'PETS_IMG',
     timestamps: false,
     indexes: [
       {
@@ -34,8 +41,14 @@ class USER_PETS extends Sequelize.Model {
         unique: true,
         using: "BTREE",
         fields: [
+          { name: "uuid" },
+        ]
+      },
+      {
+        name: "user_uuid",
+        using: "BTREE",
+        fields: [
           { name: "user_uuid" },
-          { name: "pet_uuid" },
         ]
       },
       {
@@ -47,6 +60,6 @@ class USER_PETS extends Sequelize.Model {
       },
     ]
   });
-  return USER_PETS;
+  return PETS_IMG;
   }
 }

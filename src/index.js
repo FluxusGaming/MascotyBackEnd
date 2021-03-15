@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import db from "./models/init.db";
 import usersRoutes from "./routes/Users/users.routes";
+import petsRoutes from "./routes/Pets/pets.routes";
 import securityRoutes from "./routes/Security/security.routes";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -65,6 +66,7 @@ const port = process.env.PORT || 4000;
 const prefixApi = "/api";
 app.use(prefixApi, usersRoutes);
 app.use(prefixApi, securityRoutes);
+app.use(prefixApi, petsRoutes);
 
 app.get("/", (_, res) => {
   res.status(200).json({ status: "MascotyAPP BackEnd is Online :D" });

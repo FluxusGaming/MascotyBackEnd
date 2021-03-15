@@ -27,13 +27,29 @@ class PETS extends Sequelize.Model {
       type: DataTypes.STRING(5),
       allowNull: false
     },
-    aderess: {
+    address: {
       type: DataTypes.STRING(50),
       allowNull: false
     },
     status: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    user_uuid: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+      references: {
+        model: 'USERS',
+        key: 'uuid'
+      }
+    },
+    date_post: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    date_lost: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     sequelize,
@@ -46,6 +62,13 @@ class PETS extends Sequelize.Model {
         using: "BTREE",
         fields: [
           { name: "uuid" },
+        ]
+      },
+      {
+        name: "user_uuid",
+        using: "BTREE",
+        fields: [
+          { name: "user_uuid" },
         ]
       },
     ]

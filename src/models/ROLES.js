@@ -15,10 +15,6 @@ class ROLES extends Sequelize.Model {
     name: {
       type: DataTypes.STRING(50),
       allowNull: false
-    },
-    permissions: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     }
   }, {
     sequelize,

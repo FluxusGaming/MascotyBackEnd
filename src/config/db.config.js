@@ -11,6 +11,7 @@ module.exports = {
   PASSWORD: DB_PASSWORD,
   DB,
   dialect: "mysql",
+
   pool: {
     max: 5,
     min: 0,
